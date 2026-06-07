@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 gsap.config({ force3D: true })
 
-const RevealAnimationWrapper = ({ children }: { children: ReactNode }) => {
+const RevealAnimationWrapper = ({ children, className }: { children: ReactNode, className?: string }) => {
 
     const containerRef = useRef<HTMLDivElement | null>(null)
     const animatedDiv = useRef<HTMLDivElement | null>(null)
@@ -18,13 +18,17 @@ const RevealAnimationWrapper = ({ children }: { children: ReactNode }) => {
             y: 0,
             autoAlpha: 1,
             duration: 0.5,
-            ease: 'none'
+            ease: 'none',
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: 'start 90%'
+            }
         })
 
     }, { scope: containerRef })
 
     return (
-        <div ref={containerRef}>
+        <div ref={containerRef} className={className}>
             <div className='opacity-0 translate-y-3' ref={animatedDiv}>
                 {children}
             </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import {  Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 
 
@@ -29,7 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${manRope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

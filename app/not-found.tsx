@@ -29,18 +29,10 @@ const images = [
     }
 ]
 
-const HeroBg = () => {
+const Page = () => {
     const container = useRef<HTMLDivElement>(null)
 
     useGSAP(() => {
-
-        gsap.to(container.current, {
-            opacity: 1,
-            duration: 1.5,
-            ease: 'power3.out',
-            delay: 0.2,
-
-        })
         const slides = gsap.utils.toArray<HTMLElement>('.slide');
 
 
@@ -57,7 +49,9 @@ const HeroBg = () => {
             const currentEl = slides[currentIndex];
             const nextEl = slides[nextIndex];
 
+
             gsap.set(nextEl, { autoAlpha: 0, zIndex: 2, scale: 1 });
+
 
             gsap.to(nextEl, {
                 autoAlpha: 1,
@@ -66,11 +60,15 @@ const HeroBg = () => {
                 onComplete: () => {
 
                     gsap.set(currentEl, { autoAlpha: 0, zIndex: 0 });
+
                     gsap.set(nextEl, { zIndex: 1 });
                     currentIndex = nextIndex;
+
+
                     gsap.delayedCall(2, nextSlide);
                 }
             });
+
 
             gsap.to(nextEl, {
                 scale: 1.05,
@@ -80,7 +78,7 @@ const HeroBg = () => {
         };
 
 
-        const timer = gsap.delayedCall(7.5, nextSlide);
+        const timer = gsap.delayedCall(5.5, nextSlide);
 
 
         return () => {
@@ -90,7 +88,7 @@ const HeroBg = () => {
     }, { scope: container });
 
     return (
-        <div ref={container} className="fixed inset-0 z-0 h-screen w-full overflow-hidden opacity-0 pointer-events-none">
+        <div ref={container} className="relative h-screen w-full overflow-hidden bg-background">
 
             <div className="absolute inset-0 z-20 bg-black/20" />
 
@@ -103,8 +101,13 @@ const HeroBg = () => {
                     style={{ backgroundImage: `url(${img.link})` }}
                 />
             ))}
+
+            {/* Content Container */}
+            <div className="relative z-30 flex h-full items-center justify-center text-5xl text-accent">
+                <p>Not found page</p>
+            </div>
         </div>
     );
 };
 
-export default HeroBg;
+export default Page;
