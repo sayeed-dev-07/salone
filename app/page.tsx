@@ -1,5 +1,6 @@
 
 import HeroBg from '@/components/HeroBg';
+import Collection from '@/Sections/Collection';
 import OurConcept from '@/Sections/OurConcept';
 import React from 'react';
 
@@ -19,6 +20,7 @@ const page = () => {
       <section id='other' className="relative z-20  bg-accent">
 
           <OurConcept/>
+          <Collection/>
 
       </section>
     </main>

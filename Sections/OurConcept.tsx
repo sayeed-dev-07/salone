@@ -1,12 +1,14 @@
+import Button from '@/components/Button';
 import RevealAnimationWrapper from '@/components/RevealAnimationWrapper';
 import { conceptData } from '@/public/data/conceptData';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const OurConcept = () => {
     const data = conceptData;
     return (
-        <div className='py-[5%] px-2 gap-x-4 w-full 2xl:flex-row flex-col gap-y-12 flex items-center'>
+        <div className='py-[10%] px-2 gap-x-4 w-full 2xl:flex-row flex-col gap-y-12 flex items-center'>
 
             {/* left img container  */}
 
@@ -25,6 +27,10 @@ const OurConcept = () => {
                             {data.des.map((item, index) => (
                                 <div key={index}>{item}</div>
                             ))}
+                        </div>
+                        <div className='mt-[5vh]'>
+                            <Button link={data.button.link} text={data.button.text
+                            } />
                         </div>
                     </div>
                 </div>
